@@ -1,33 +1,9 @@
-import { useState } from 'react';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
+import { useForm, ValidationError } from '@formspree/react';
 
 const Contact = () => {
   const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.2 });
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: '', email: '', message: '' });
-    }, 3000);
-  };
+  const [state, handleSubmit] = useForm("mgvzpbkn");
 
   const handleMailClick = () => {
     const subject = encodeURIComponent('Hello from your portfolio!');
@@ -56,80 +32,87 @@ const Contact = () => {
           
           <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
             {/* Contact Form */}
-            <div className={`lg:col-span-3 transition-all duration-1000 ${isVisible ? 'animate-slide-in-left' : 'opacity-0 -translate-x-10'}`}>
-              <div className="card-gradient rounded-3xl p-8 lg:p-12 shadow-card border border-primary/10">
-                {!isSubmitted ? (
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-3">
-                          Full Name
-                        </label>
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-4 bg-background/50 border border-border rounded-2xl focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth text-foreground placeholder:text-muted-foreground"
-                          placeholder="Enter your full name"
-                        />
-                      </div>
-                      
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-semibold text-foreground mb-3">
-                          Email Address
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-4 bg-background/50 border border-border rounded-2xl focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth text-foreground placeholder:text-muted-foreground"
-                          placeholder="your.email@example.com"
-                        />
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-semibold text-foreground mb-3">
-                        Message
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        rows={6}
-                        className="w-full px-4 py-4 bg-background/50 border border-border rounded-2xl focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth resize-none text-foreground placeholder:text-muted-foreground"
-                        placeholder="Tell me about your project, ideas, or just say hello!"
-                      />
-                    </div>
-                    
-                    <button
-                      type="submit"
-                      className="w-full py-4 bg-gradient-to-r from-primary to-purple-600 text-primary-foreground rounded-2xl font-semibold text-lg transition-all duration-300 hover:shadow-glow hover:scale-105 active:scale-95"
-                    >
-                      Send Message
-                    </button>
-                  </form>
-                ) : (
-                  <div className="text-center py-16 animate-fade-in">
-                    <div className="text-8xl mb-8">✅</div>
-                    <h3 className="text-3xl font-bold text-primary mb-4">
-                      Message Sent Successfully!
-                    </h3>
-                    <p className="text-muted-foreground text-lg">
-                      Thank you for reaching out. I'll get back to you within 24 hours!
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
+                         <div className={`lg:col-span-3 transition-all duration-1000 ${isVisible ? 'animate-slide-in-left' : 'opacity-0 -translate-x-10'}`}>
+               <div className="card-gradient rounded-3xl p-8 lg:p-12 shadow-card border border-primary/10">
+                 {state.succeeded ? (
+                   <div className="text-center py-16 animate-fade-in">
+                     <div className="text-8xl mb-8">✅</div>
+                     <h3 className="text-3xl font-bold text-primary mb-4">
+                       Message Sent Successfully!
+                     </h3>
+                     <p className="text-muted-foreground text-lg">
+                       Thank you for reaching out. I'll get back to you within 24 hours!
+                     </p>
+                   </div>
+                 ) : (
+                   <form onSubmit={handleSubmit} className="space-y-6">
+                     <div className="grid md:grid-cols-2 gap-6">
+                       <div>
+                         <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-3">
+                           Full Name
+                         </label>
+                         <input
+                           type="text"
+                           id="name"
+                           name="name"
+                           required
+                           className="w-full px-4 py-4 bg-background/50 border border-border rounded-2xl focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth text-foreground placeholder:text-muted-foreground"
+                           placeholder="Enter your full name"
+                         />
+                       </div>
+                       
+                       <div>
+                         <label htmlFor="email" className="block text-sm font-semibold text-foreground mb-3">
+                           Email Address
+                         </label>
+                         <input
+                           type="email"
+                           id="email"
+                           name="email"
+                           required
+                           className="w-full px-4 py-4 bg-background/50 border border-border rounded-2xl focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth text-foreground placeholder:text-muted-foreground"
+                           placeholder="your.email@example.com"
+                         />
+                         <ValidationError 
+                           prefix="Email" 
+                           field="email"
+                           errors={state.errors}
+                           className="text-red-500 text-sm mt-1"
+                         />
+                       </div>
+                     </div>
+                     
+                     <div>
+                       <label htmlFor="message" className="block text-sm font-semibold text-foreground mb-3">
+                         Message
+                       </label>
+                       <textarea
+                         id="message"
+                         name="message"
+                         required
+                         rows={6}
+                         className="w-full px-4 py-4 bg-background/50 border border-border rounded-2xl focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth resize-none text-foreground placeholder:text-muted-foreground"
+                         placeholder="Tell me about your project, ideas, or just say hello!"
+                       />
+                       <ValidationError 
+                         prefix="Message" 
+                         field="message"
+                         errors={state.errors}
+                         className="text-red-500 text-sm mt-1"
+                       />
+                     </div>
+                     
+                     <button
+                       type="submit"
+                       disabled={state.submitting}
+                       className="w-full py-4 bg-gradient-to-r from-primary to-purple-600 text-primary-foreground rounded-2xl font-semibold text-lg transition-all duration-300 hover:shadow-glow hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                     >
+                       {state.submitting ? 'Sending...' : 'Send Message'}
+                     </button>
+                   </form>
+                 )}
+               </div>
+             </div>
             
             {/* Contact Information */}
             <div className={`lg:col-span-2 transition-all duration-1000 ${isVisible ? 'animate-slide-in-right' : 'opacity-0 translate-x-10'}`}>
