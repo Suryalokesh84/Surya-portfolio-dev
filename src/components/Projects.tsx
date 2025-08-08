@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 
 const Projects = () => {
   const [expandedProject, setExpandedProject] = useState<number | null>(null);
+  const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.2 });
 
   const projects = [
     {
@@ -49,10 +51,10 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-20">
+    <section ref={elementRef} id="projects" className="py-20">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-gradient">
+          <h2 className={`text-4xl md:text-5xl font-bold mb-12 text-center text-gradient transition-all duration-1000 ${isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-10'}`}>
             Featured Projects
           </h2>
           
@@ -60,7 +62,7 @@ const Projects = () => {
             {projects.map((project, index) => (
               <div 
                 key={index}
-                className="card-gradient rounded-2xl p-6 shadow-card transition-spring hover:scale-105 animate-slide-up cursor-pointer"
+                className={`card-gradient rounded-2xl p-6 shadow-card transition-spring hover:scale-105 cursor-pointer transition-all duration-1000 ${isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-10'}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
                 onClick={() => setExpandedProject(expandedProject === index ? null : index)}
               >

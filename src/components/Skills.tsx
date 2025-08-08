@@ -1,4 +1,8 @@
+import { useScrollAnimation } from '@/hooks/use-scroll-animation';
+
 const Skills = () => {
+  const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.2 });
+  
   const skillCategories = [
     {
       title: "Languages",
@@ -59,7 +63,7 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 lg:py-32 bg-secondary/10 relative overflow-hidden">
+    <section ref={elementRef} id="skills" className="py-20 lg:py-32 bg-secondary/10 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-primary/20 to-purple-500/20"></div>
@@ -68,10 +72,10 @@ const Skills = () => {
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-gradient animate-slide-up">
+            <h2 className={`text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-gradient transition-all duration-1000 ${isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-10'}`}>
               Skills & Technologies
             </h2>
-            <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <p className={`text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto transition-all duration-1000 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
               A comprehensive toolkit for building modern, scalable applications from concept to deployment
             </p>
           </div>
@@ -82,7 +86,7 @@ const Skills = () => {
                 key={categoryIndex}
                 className="group relative"
               >
-                <div className={`card-gradient rounded-3xl p-6 lg:p-8 shadow-card transition-all duration-500 hover:scale-105 hover:shadow-glow border border-primary/10 hover:border-primary/30 animate-scale-in h-full`}
+                <div className={`card-gradient rounded-3xl p-6 lg:p-8 shadow-card transition-all duration-500 hover:scale-105 hover:shadow-glow border border-primary/10 hover:border-primary/30 h-full transition-all duration-1000 ${isVisible ? 'animate-scale-in' : 'opacity-0 scale-75'}`}
                   style={{ animationDelay: `${categoryIndex * 0.1}s` }}
                 >
                   {/* Header */}
@@ -103,7 +107,7 @@ const Skills = () => {
                     {category.skills.map((skill, skillIndex) => (
                       <span
                         key={skillIndex}
-                        className={`px-3 py-1.5 rounded-full text-xs lg:text-sm font-medium border transition-all duration-300 hover:scale-110 hover:shadow-md bg-gradient-to-r ${category.color} animate-slide-up`}
+                        className={`px-3 py-1.5 rounded-full text-xs lg:text-sm font-medium border transition-all duration-300 hover:scale-110 hover:shadow-md bg-gradient-to-r ${category.color} transition-all duration-1000 ${isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-5'}`}
                         style={{ animationDelay: `${(categoryIndex * 0.1) + (skillIndex * 0.05)}s` }}
                       >
                         {skill}
@@ -126,7 +130,7 @@ const Skills = () => {
           </div>
           
           {/* Skills Summary */}
-          <div className="mt-16 text-center animate-fade-in" style={{ animationDelay: '1.2s' }}>
+          <div className={`mt-16 text-center transition-all duration-1000 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '1.2s' }}>
             <div className="inline-flex flex-wrap items-center justify-center gap-8 px-8 py-6 bg-gradient-to-r from-primary/10 to-purple-500/10 rounded-3xl border border-primary/20">
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary">15+</div>

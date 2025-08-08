@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 
 const Contact = () => {
+  const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.2 });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -35,7 +37,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 lg:py-32 bg-secondary/5 relative overflow-hidden">
+    <section ref={elementRef} id="contact" className="py-20 lg:py-32 bg-secondary/5 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-primary/20 to-purple-500/20"></div>
@@ -44,17 +46,17 @@ const Contact = () => {
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-gradient animate-slide-up">
+            <h2 className={`text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-gradient transition-all duration-1000 ${isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-10'}`}>
               Let's Connect
             </h2>
-            <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <p className={`text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto transition-all duration-1000 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
               Ready to collaborate? I'd love to hear about your project and discuss how we can work together.
             </p>
           </div>
           
           <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
             {/* Contact Form */}
-            <div className="lg:col-span-3">
+            <div className={`lg:col-span-3 transition-all duration-1000 ${isVisible ? 'animate-slide-in-left' : 'opacity-0 -translate-x-10'}`}>
               <div className="card-gradient rounded-3xl p-8 lg:p-12 shadow-card border border-primary/10">
                 {!isSubmitted ? (
                   <form onSubmit={handleSubmit} className="space-y-6">
@@ -130,7 +132,7 @@ const Contact = () => {
             </div>
             
             {/* Contact Information */}
-            <div className="lg:col-span-2">
+            <div className={`lg:col-span-2 transition-all duration-1000 ${isVisible ? 'animate-slide-in-right' : 'opacity-0 translate-x-10'}`}>
               <div className="card-gradient rounded-3xl p-8 shadow-card border border-primary/10">
                 <h3 className="text-2xl font-bold text-primary mb-8">Contact Information</h3>
                 

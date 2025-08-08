@@ -50,14 +50,19 @@ const Navigation = () => {
         <div className="container mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
-              <img 
-                src={logo} 
-                alt="Surya Lokesh Logo" 
-                className="h-10 w-10 rounded-full object-cover shadow-lg hover:scale-110 transition-transform duration-300"
-              />
-              <span className="ml-3 text-xl font-bold text-gradient animate-bounce-subtle">
-                Surya Lokesh
-              </span>
+              <a 
+                href="#home" 
+                className="flex items-center hover:scale-105 transition-transform duration-300 cursor-pointer"
+              >
+                <img 
+                  src={logo} 
+                  alt="Surya Lokesh Logo" 
+                  className="h-10 w-10 rounded-full object-cover shadow-lg hover:scale-110 transition-transform duration-300"
+                />
+                <span className="ml-3 text-xl font-bold text-gradient animate-bounce-subtle">
+                  Surya Lokesh
+                </span>
+              </a>
             </div>
             
             <div className="hidden md:flex items-center space-x-8">

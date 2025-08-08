@@ -1,6 +1,10 @@
+import { useScrollAnimation } from '@/hooks/use-scroll-animation';
+
 const About = () => {
+  const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.2 });
+  
   return (
-    <section id="about" className="py-20 lg:py-32 bg-secondary/10 relative overflow-hidden">
+    <section ref={elementRef} id="about" className="py-20 lg:py-32 bg-secondary/10 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/20 to-purple-500/20"></div>
@@ -8,13 +12,13 @@ const About = () => {
       
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-16 text-center text-gradient animate-slide-up">
+          <h2 className={`text-4xl sm:text-5xl lg:text-6xl font-bold mb-16 text-center text-gradient transition-all duration-1000 ${isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-10'}`}>
             About Me
           </h2>
           
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Content */}
-            <div className="space-y-8 animate-slide-in-left">
+            <div className={`space-y-8 transition-all duration-1000 ${isVisible ? 'animate-slide-in-left' : 'opacity-0 -translate-x-10'}`}>
               <div className="card-gradient rounded-3xl p-8 lg:p-12 shadow-card transition-all duration-500 hover:scale-105 hover:shadow-glow border border-primary/10">
                 <p className="text-lg lg:text-xl leading-relaxed text-muted-foreground mb-8">
                   Passionate and self-taught <span className="text-primary font-semibold bg-primary/10 px-2 py-1 rounded">Full Stack Developer</span> and{' '}
@@ -37,7 +41,7 @@ const About = () => {
             </div>
             
             {/* Skills Tags */}
-            <div className="space-y-6 animate-slide-in-right">
+            <div className={`space-y-6 transition-all duration-1000 ${isVisible ? 'animate-slide-in-right' : 'opacity-0 translate-x-10'}`}>
               <h3 className="text-2xl font-bold text-primary mb-6">Core Strengths</h3>
               <div className="flex flex-wrap gap-4">
                 {[

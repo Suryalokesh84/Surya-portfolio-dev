@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import profileImage from '@/assets/profile-image.jpg';
+import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 
 const Hero = () => {
   const [text, setText] = useState('');
   const fullText = 'Full Stack Developer | AIML Enthusiast';
   const [index, setIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.3 });
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -26,7 +28,7 @@ const Hero = () => {
   }, [index, isDeleting, fullText]);
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section ref={elementRef} id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 hero-gradient opacity-10"></div>
       <div className="absolute inset-0">
@@ -37,7 +39,7 @@ const Hero = () => {
       
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="text-center">
-          <div className="mb-12 inline-block animate-scale-in" style={{ marginTop: '5%' }}>
+          <div className={`mb-12 inline-block transition-all duration-1000 ${isVisible ? 'animate-scale-in' : 'opacity-0 scale-75'}`} style={{ marginTop: '5%' }}>
             <div className="relative">
               <div className="w-52 h-52 sm:w-60 sm:h-60 lg:w-72 lg:h-72 mx-auto rounded-full overflow-hidden border-4 border-primary shadow-glow animate-float bg-gradient-to-br from-primary/20 to-purple-500/20 p-1">
                 <div className="w-full h-full rounded-full overflow-hidden">
@@ -52,22 +54,22 @@ const Hero = () => {
             </div>
           </div>
           
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 text-gradient animate-slide-up leading-tight">
+          <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 text-gradient transition-all duration-1000 ${isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-10'} leading-tight`}>
             Dunaboyina Surya Lokesh
           </h1>
           
-          <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-12 h-12 sm:h-14 md:h-16 flex items-center justify-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
+          <div className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-12 h-12 sm:h-14 md:h-16 flex items-center justify-center transition-all duration-1000 ${isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-10'}`} style={{ animationDelay: '0.2s' }}>
             <span className="text-primary font-mono">
               {text}
               <span className="animate-pulse text-primary">|</span>
             </span>
           </div>
           
-          <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-12 animate-slide-up" style={{ animationDelay: '0.4s' }}>
+          <p className={`text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-12 transition-all duration-1000 ${isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-10'}`} style={{ animationDelay: '0.4s' }}>
             Passionate and self-taught developer crafting innovative solutions with modern technologies
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-slide-up" style={{ animationDelay: '0.6s' }}>
+          <div className={`flex flex-col sm:flex-row gap-6 justify-center items-center transition-all duration-1000 ${isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-10'}`} style={{ animationDelay: '0.6s' }}>
             <a 
               href="#contact" 
               className="group relative px-10 py-4 bg-primary text-primary-foreground rounded-full font-semibold transition-all duration-300 hover:shadow-glow hover:scale-105 hover:-translate-y-1 overflow-hidden"
