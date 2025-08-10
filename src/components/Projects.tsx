@@ -1,116 +1,126 @@
 import { useState } from 'react';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
+import { Github, ExternalLink } from 'lucide-react';
 
 const Projects = () => {
-  const [expandedProject, setExpandedProject] = useState<number | null>(null);
   const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.2 });
 
   const projects = [
     {
       title: "Smart Face Attendance System",
-      shortDesc: "Python + Flask app with OpenCV for face recognition",
-      fullDesc: "A comprehensive attendance management system using Python and Flask with OpenCV for face recognition. Features include JSON storage, geolocation verification, Excel export functionality, admin panel, and automated attendance email alerts.",
+      description: "A comprehensive attendance management system using Python and Flask with OpenCV for face recognition. Features include JSON storage, geolocation verification, Excel export functionality, admin panel, and automated attendance email alerts.",
       tech: ["Python", "Flask", "OpenCV", "JSON", "JavaScript", "HTML/CSS"],
-      highlights: ["Face Recognition", "Geolocation Verification", "Email Alerts", "Excel Export"]
+      image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=400&h=300&fit=crop&crop=center",
+      github: "#",
+      demo: "#"
     },
     {
       title: "AI-Powered Text Summarization Tool",
-      shortDesc: "OCR and text summarization with modern AI models",
-      fullDesc: "Advanced text processing application featuring OCR using Tesseract, text summarization via Sumy and Transformers (T5, BART), and image generation via DALL·E API. Deployed on Render and Netlify for optimal performance.",
+      description: "Advanced text processing application featuring OCR using Tesseract, text summarization via Sumy and Transformers (T5, BART), and image generation via DALL·E API. Deployed on Render and Netlify for optimal performance.",
       tech: ["Python", "Tesseract", "Transformers", "T5", "BART", "DALL·E API", "Render", "Netlify"],
-      highlights: ["OCR Processing", "AI Summarization", "Image Generation", "Cloud Deployment"]
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop&crop=center",
+      github: "#",
+      demo: "#"
     },
     {
       title: "Phone Book Console App",
-      shortDesc: "Simple contact management system",
-      fullDesc: "A console-based application for managing contacts with CRUD operations, search functionality, and data persistence.",
+      description: "A console-based application for managing contacts with CRUD operations, search functionality, and data persistence.",
       tech: ["Python", "File I/O", "Data Structures"],
-      highlights: ["CRUD Operations", "Search Functionality", "Data Persistence"]
+      image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=300&fit=crop&crop=center",
+      github: "#",
+      demo: "#"
     },
     {
       title: "CRUD Web App",
-      shortDesc: "Full-stack web application with database operations",
-      fullDesc: "A complete web application demonstrating Create, Read, Update, and Delete operations with a modern web interface and backend database integration.",
+      description: "A complete web application demonstrating Create, Read, Update, and Delete operations with a modern web interface and backend database integration.",
       tech: ["HTML", "CSS", "JavaScript", "Database"],
-      highlights: ["Full CRUD", "Web Interface", "Database Integration"]
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop&crop=center",
+      github: "#",
+      demo: "#"
     },
     {
       title: "Temple Website",
-      shortDesc: "Religious institution website with modern design",
-      fullDesc: "A responsive website for a temple featuring event management, donation systems, and visitor information with a beautiful, culturally appropriate design.",
+      description: "A responsive website for a temple featuring event management, donation systems, and visitor information with a beautiful, culturally appropriate design.",
       tech: ["HTML", "CSS", "JavaScript", "Responsive Design"],
-      highlights: ["Event Management", "Donation System", "Responsive Design"]
+      image: "https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=400&h=300&fit=crop&crop=center",
+      github: "#",
+      demo: "#"
     },
     {
       title: "Personal Portfolio Website",
-      shortDesc: "Professional portfolio showcasing projects and skills",
-      fullDesc: "A modern, responsive portfolio website built with React and TypeScript, featuring dynamic animations, project showcases, and contact forms.",
+      description: "A modern, responsive portfolio website built with React and TypeScript, featuring dynamic animations, project showcases, and contact forms.",
       tech: ["React", "TypeScript", "Tailwind CSS", "Responsive Design"],
-      highlights: ["React Components", "TypeScript", "Modern Design", "Animations"]
+      image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=300&fit=crop&crop=center",
+      github: "#",
+      demo: "#"
     }
   ];
 
   return (
     <section ref={elementRef} id="projects" className="py-20">
       <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <h2 className={`text-4xl md:text-5xl font-bold mb-12 text-center text-gradient transition-all duration-1000 ${isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-10'}`}>
             Featured Projects
           </h2>
           
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
             {projects.map((project, index) => (
               <div 
                 key={index}
-                className={`card-gradient rounded-2xl p-6 shadow-card transition-spring hover:scale-105 cursor-pointer transition-all duration-1000 ${isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-10'}`}
+                className={`bg-card rounded-2xl overflow-hidden shadow-card transition-all duration-500 hover:scale-105 hover:shadow-glow border border-border ${isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-10'}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
-                onClick={() => setExpandedProject(expandedProject === index ? null : index)}
               >
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-bold text-primary pr-4">
-                    {project.title}
-                  </h3>
-                  <button className="text-primary hover:scale-110 transition-smooth">
-                    <svg 
-                      className={`w-6 h-6 transition-transform ${expandedProject === index ? 'rotate-180' : ''}`}
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
+                {/* Project Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                 </div>
                 
-                <p className="text-muted-foreground mb-4">
-                  {expandedProject === index ? project.fullDesc : project.shortDesc}
-                </p>
-                
-                {expandedProject === index && (
-                  <div className="space-y-4 animate-fade-in">
-                    <div>
-                      <h4 className="font-semibold text-primary mb-2">Key Highlights:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {project.highlights.map((highlight, idx) => (
-                          <span key={idx} className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm border border-primary/20">
-                            {highlight}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <h4 className="font-semibold text-primary mb-2">Technologies:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {project.tech.map((tech, idx) => (
-                          <span key={idx} className="px-3 py-1 bg-secondary/20 text-secondary-foreground rounded-full text-sm border border-secondary/20">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+                {/* Project Content */}
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-primary mb-3">
+                    {project.title}
+                  </h3>
+                  
+                  <p className="text-muted-foreground mb-4 line-clamp-3">
+                    {project.description}
+                  </p>
+                  
+                  {/* Technology Tags */}
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tech.map((tech, idx) => (
+                      <span 
+                        key={idx} 
+                        className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm border border-primary/20"
+                      >
+                        {tech}
+                      </span>
+                    ))}
                   </div>
-                )}
+                  
+                  {/* Action Buttons */}
+                  <div className="flex gap-3">
+                    <a 
+                      href={project.github}
+                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                    >
+                      <Github className="w-4 h-4" />
+                      GitHub
+                    </a>
+                    <a 
+                      href={project.demo}
+                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      Live Demo
+                    </a>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
