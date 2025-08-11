@@ -51,7 +51,7 @@ const Projects = () => {
       description: "A modern, responsive portfolio website built with React and TypeScript, featuring dynamic animations, project showcases, and contact forms.",
       tech: ["React", "TypeScript", "Tailwind CSS", "Responsive Design"],
       image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=300&fit=crop&crop=center",
-      github: "#",
+      github: "https://github.com/Suryalokesh84/Surya-portfolio-dev.git",
       demo: "#"
     }
   ];
