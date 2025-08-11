@@ -11,7 +11,7 @@ const Projects = () => {
       description: "A comprehensive attendance management system using Python and Flask with OpenCV for face recognition. Features include JSON storage, geolocation verification, Excel export functionality, admin panel, and automated attendance email alerts.",
       tech: ["Python", "Flask", "OpenCV", "JSON", "JavaScript", "HTML/CSS"],
       image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=400&h=300&fit=crop&crop=center",
-      github: "#",
+      github: "https://github.com/Suryalokesh84/flask_smart_attendance.git",
       demo: "#"
     },
     {
@@ -43,7 +43,7 @@ const Projects = () => {
       description: "A responsive website for a temple featuring event management, donation systems, and visitor information with a beautiful, culturally appropriate design.",
       tech: ["HTML", "CSS", "JavaScript", "Responsive Design"],
       image: "https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=400&h=300&fit=crop&crop=center",
-      github: "#",
+      github: "https://github.com/Suryalokesh84/Vijaya-durga-temple-website.git",
       demo: "#"
     },
     {
