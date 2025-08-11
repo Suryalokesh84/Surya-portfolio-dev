@@ -19,7 +19,7 @@ const Projects = () => {
       description: "Advanced text processing application featuring OCR using Tesseract, text summarization via Sumy and Transformers (T5, BART), and image generation via DALL·E API. Deployed on Render and Netlify for optimal performance.",
       tech: ["Python", "Tesseract", "Transformers", "T5", "BART", "DALL·E API", "Render", "Netlify"],
       image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop&crop=center",
-      github: "#",
+      github: "https://github.com/Suryalokesh84/Text-Summarization.git",
       demo: "#"
     },
     {
