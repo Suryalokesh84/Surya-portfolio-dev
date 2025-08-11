@@ -107,6 +107,8 @@ const Projects = () => {
                   <div className="flex gap-3">
                     <a 
                       href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="flex-1 flex items-center justify-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                     >
                       <Github className="w-4 h-4" />
@@ -114,6 +116,8 @@ const Projects = () => {
                     </a>
                     <a 
                       href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="flex-1 flex items-center justify-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                     >
                       <ExternalLink className="w-4 h-4" />
