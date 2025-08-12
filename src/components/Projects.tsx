@@ -44,7 +44,7 @@ const Projects = () => {
       tech: ["HTML", "CSS", "JavaScript", "Responsive Design"],
       image: "https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=400&h=300&fit=crop&crop=center",
       github: "https://github.com/Suryalokesh84/Vijaya-durga-temple-website.git",
-      demo: "#"
+      demo: "https://vijaya-durga-temple-website.onrender.com/"
     },
     {
       title: "Personal Portfolio Website",
