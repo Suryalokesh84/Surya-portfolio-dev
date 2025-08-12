@@ -52,7 +52,7 @@ const Projects = () => {
       tech: ["React", "TypeScript", "Tailwind CSS", "Responsive Design"],
       image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=300&fit=crop&crop=center",
       github: "https://github.com/Suryalokesh84/Surya-portfolio-dev.git",
-      demo: "#"
+      demo: "https://suryalokesh.vercel.app/"
     }
   ];
 
@@ -105,24 +105,20 @@ const Projects = () => {
                   
                   {/* Action Buttons */}
                   <div className="flex gap-3">
-                    <a 
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                    <button 
+                      onClick={() => project.github && project.github !== "#" ? window.open(project.github, '_blank') : null}
+                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 cursor-pointer"
                     >
                       <Github className="w-4 h-4" />
                       GitHub
-                    </a>
-                    <a 
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                    </button>
+                    <button 
+                      onClick={() => project.demo && project.demo !== "#" ? window.open(project.demo, '_blank') : null}
+                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 cursor-pointer"
                     >
                       <ExternalLink className="w-4 h-4" />
                       Live Demo
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>
